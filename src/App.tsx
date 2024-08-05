@@ -4,6 +4,7 @@ import styled, { ThemeProvider } from 'styled-components';
 import GlobalStyle from './styles/globalStyles';
 import { theme } from './styles';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Base from './components/QrBottomSheet/Base';
 
 function App() {
   const setScreenSize = () => {
@@ -51,7 +52,7 @@ function App() {
         <MobileWrapper>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element />
+              <Route path="/" element={<Base />} />
             </Routes>
           </BrowserRouter>
         </MobileWrapper>

@@ -3,7 +3,7 @@ import reset from 'styled-reset';
 
 const GlobalStyle = createGlobalStyle`
   /* 스크롤 체이닝 막기위한 방법 = 모바일 아래 드래그로 새로고침 막는 코드*/
-  /* overscroll-behavior: contain; */
+  overscroll-behavior: contain;
 
   ${reset}
   * {
@@ -17,6 +17,10 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     /* rem 16px -> 10px로 초기화*/
     font-size: 62.5%;
+    
+    overflow: hidden;
+    overscroll-behavior: none;
+  
   }
 
   a {
