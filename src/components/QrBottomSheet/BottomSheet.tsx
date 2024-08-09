@@ -21,7 +21,9 @@ const BottomSheet = () => {
 const Wrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
+  align-items: center;
 
+  /* position: absolute; */
   position: fixed;
   z-index: 1;
   top: calc(100% - 90px);

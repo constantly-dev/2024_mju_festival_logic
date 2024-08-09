@@ -10,9 +10,15 @@ const Base = () => {
 };
 
 const BaseDiv = styled.div`
-  height: 100vh;
-  width: 100vw;
-  background-color: #000000;
+  /* height: 100vh;
+  width: 100vw; */
+  width: 100%;
+  height: 50rem;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid blue;
 `;
 
 export default Base;
