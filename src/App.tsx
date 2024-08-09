@@ -1,35 +1,79 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect } from 'react';
+
+import styled, { ThemeProvider } from 'styled-components';
+import GlobalStyle from './styles/globalStyles';
+import { theme } from './styles';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Base from './components/QrBottomSheet/Base';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const setScreenSize = () => {
+    const vh = window.innerHeight * 0.01;
+    const windowWidth =
+      window.innerWidth || document.documentElement.clientWidth;
+    const maxWidth = Math.min(37.5, windowWidth);
+
+    document.documentElement.style.setProperty('--vh', `${vh}px`);
+    document.documentElement.style.setProperty(
+      '--app-max-width',
+      `${maxWidth}rem`
+    );
+  };
+
+  useEffect(() => {
+    setScreenSize();
+    window.addEventListener('resize', setScreenSize);
+
+    // 클린업 함수의 의미?
+    return () => {
+      window.removeEventListener('resize', setScreenSize);
+    };
+  }, []);
+
+  // 최적화 필요시에 고민
+  // const delay = 300;
+  // let timer = null;
+
+  // window.addEventListener('resize', function () {
+  //   clearTimeout(timer);
+  //   timer = setTimeout(function () {
+  //     console.log('resize event!');
+
+  //     if (window.innerWidth <= 800) {
+  //       alert('현재 브라우저 크기가 <= 800px');
+  //     }
+  //   }, delay);
+  // });
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <MobileWrapper>
+          <BrowserRouter>
+            <Routes>
+              <Route path="/" element={<Base />} />
+            </Routes>
+          </BrowserRouter>
+        </MobileWrapper>
+      </ThemeProvider>
     </>
-  )
+  );
 }
 
-export default App
+const MobileWrapper = styled.div`
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  align-items: center;
+
+  margin: 0 auto;
+  background-color: gray;
+  padding-right: 2rem;
+  padding-left: 2rem;
+
+  max-width: var(--app-max-width, 37.5rem);
+  min-height: calc(var(--vh, 1vh) * 100);
+`;
+
+export default App;
