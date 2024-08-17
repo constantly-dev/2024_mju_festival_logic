@@ -19,7 +19,7 @@ export const getLostItem = async (
     setLostItems(simpleLostItems);
     setTotalPage(totalPage);
 
-    console.log(simpleLostItems);
+    console.log('이거', simpleLostItems);
     console.log(totalPage);
   } catch (error) {
     console.log(error);

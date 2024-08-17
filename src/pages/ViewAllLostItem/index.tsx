@@ -67,11 +67,7 @@ const LostItem = () => {
         </ListTItleContainer>
         <CardContainer>
           {LostItems.map((lostItem) => (
-            <LostItemCard
-              key={lostItem.id}
-              title={lostItem.title}
-              content={lostItem.content}
-            />
+            <LostItemCard key={lostItem.id} lostItem={lostItem} />
           ))}
           <PageBtnContainer>
             <PageButton onClick={() => handlePageNum(-1)}>{'<'}</PageButton>
