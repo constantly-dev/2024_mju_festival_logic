@@ -5,6 +5,7 @@ import GlobalStyle from './styles/globalStyles';
 import { theme } from './styles';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Base from './components/QrBottomSheet/Base';
+import LostItem from './pages/ViewLostItem';
 
 function App() {
   const setScreenSize = () => {
@@ -53,6 +54,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Base />} />
+              <Route path="/lostItem" element={<LostItem />} />
             </Routes>
           </BrowserRouter>
         </MobileWrapper>
