@@ -3,33 +3,14 @@ import { useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Base from './components/QrBottomSheet/Base';
+import LostItem from './pages/ViewAllLostItem';
+import DetailLostItem from './pages/ViewDetailLostItem';
 import Weather from './pages/Weather';
 import { theme } from './styles';
 import GlobalStyle from './styles/globalStyles';
 
 function App() {
-  const setScreenSize = () => {
-    const vh = window.innerHeight * 0.01;
-    const windowWidth =
-      window.innerWidth || document.documentElement.clientWidth;
-    const maxWidth = Math.min(37.5, windowWidth);
-
-    document.documentElement.style.setProperty('--vh', `${vh}px`);
-    document.documentElement.style.setProperty(
-      '--app-max-width',
-      `${maxWidth}rem`
-    );
-  };
-
-  useEffect(() => {
-    setScreenSize();
-    window.addEventListener('resize', setScreenSize);
-
-    // 클린업 함수의 의미?
-    return () => {
-      window.removeEventListener('resize', setScreenSize);
-    };
-  }, []);
+  useWindowResize();
 
   return (
     <>
@@ -39,6 +20,8 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Base />} />
+              <Route path="/lostItem" element={<LostItem />} />
+              <Route path="/lostItem/detail" element={<DetailLostItem />} />
               <Route path="/weather" element={<Weather />} />
             </Routes>
           </BrowserRouter>
@@ -49,18 +32,13 @@ function App() {
 }
 
 const MobileWrapper = styled.div`
-  display: flex;
+  max-width: 430px;
+  height: calc(var(--vh, 1vh) * 100);
+  padding: 20px;
+  margin: auto;
   position: relative;
-  flex-direction: column;
-  align-items: center;
-
-  margin: 0 auto;
-  background-color: gray;
-  padding-right: 2rem;
-  padding-left: 2rem;
-
-  max-width: var(--app-max-width, 37.5rem);
-  min-height: calc(var(--vh, 1vh) * 100);
+  overflow-y: auto;
+  background-color: #ffffff;
 `;
 
 export default App;

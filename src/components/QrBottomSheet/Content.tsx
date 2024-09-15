@@ -1,11 +1,31 @@
 import QRCode from 'qrcode.react';
+import { useEffect, useState } from 'react';
+import { getQrData } from '../../api/boothQR';
+
+interface ResponseQrUrl {
+  qrCode: string;
+}
 
 const Content = () => {
-  // QR을 svg로 할지 canvas 형식으로 할지 최적화 고려
-  const qrData = 'https://www.naver.com/';
+  const [qrData, setQrData] = useState<ResponseQrUrl | undefined>(undefined);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getQrData('65616264-3165-6132-2d38-3534342d3434');
+        setQrData(data);
+      } catch (error) {
+        console.error('Error fetching QR data:', error);
+        setQrData(undefined);
+      }
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <>
-      <QRCode value={qrData} />
+      {qrData?.qrCode ? <QRCode value={qrData.qrCode} /> : <p>Loading...</p>}{' '}
     </>
   );
 };
