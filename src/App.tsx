@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useWindowResize } from './hooks/useWindowResize';
 
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';

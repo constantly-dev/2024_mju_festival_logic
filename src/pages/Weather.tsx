@@ -21,10 +21,10 @@ const Weather = () => {
   const [currentTime, setCurrentTime] = useState('');
   const [forecasts, setForecasts] = useState<WeatherForecast[]>([]);
 
-  const token = '임시 토큰';
-  const NUM_OF_ROWS = '50';
-  const NX = '55';
-  const NY = '127';
+  const token = '';
+  const NUM_OF_ROWS = '60';
+  const NX = '63';
+  const NY = '119';
 
   const groupForecast = (forecasts: GroupedWeatherData[]) => {
     const groupedForecasts: Record<string, WeatherForecast> = {};
