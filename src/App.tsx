@@ -1,10 +1,11 @@
 import { useEffect } from 'react';
 
-import styled, { ThemeProvider } from 'styled-components';
-import GlobalStyle from './styles/globalStyles';
-import { theme } from './styles';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import styled, { ThemeProvider } from 'styled-components';
 import Base from './components/QrBottomSheet/Base';
+import Weather from './pages/Weather';
+import { theme } from './styles';
+import GlobalStyle from './styles/globalStyles';
 
 function App() {
   const setScreenSize = () => {
@@ -30,21 +31,6 @@ function App() {
     };
   }, []);
 
-  // 최적화 필요시에 고민
-  // const delay = 300;
-  // let timer = null;
-
-  // window.addEventListener('resize', function () {
-  //   clearTimeout(timer);
-  //   timer = setTimeout(function () {
-  //     console.log('resize event!');
-
-  //     if (window.innerWidth <= 800) {
-  //       alert('현재 브라우저 크기가 <= 800px');
-  //     }
-  //   }, delay);
-  // });
-
   return (
     <>
       <ThemeProvider theme={theme}>
@@ -53,6 +39,7 @@ function App() {
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<Base />} />
+              <Route path="/weather" element={<Weather />} />
             </Routes>
           </BrowserRouter>
         </MobileWrapper>
