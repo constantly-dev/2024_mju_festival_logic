@@ -4,13 +4,13 @@ import { getWeatherInfo } from '../api/getWeatherInfo';
 import WeatherItemBox from '../components/Weather/WeatherItemBox';
 import getCurrentDateFormatted from '../utils/getCurrentDateFormatted';
 
-interface WeatherProps {
+interface WeatherForecast {
   fcstTime: string;
   SKY: string | null;
   T1H: string | null;
 }
 
-interface Forecasts {
+interface GroupedWeatherData {
   fcstTime: string;
   category: string;
   fcstValue: string;
@@ -19,17 +19,17 @@ interface Forecasts {
 const Weather = () => {
   const [currentDate, setCurrentDate] = useState('');
   const [currentTime, setCurrentTime] = useState('');
-  const [forecasts, setForecasts] = useState<WeatherProps[]>([]);
+  const [forecasts, setForecasts] = useState<WeatherForecast[]>([]);
 
   const token = '임시 토큰';
   const NUM_OF_ROWS = '50';
   const NX = '55';
   const NY = '127';
 
-  const groupForecast = (forecasts: Forecasts[]) => {
-    const groupedForecasts: Record<string, WeatherProps> = {};
+  const groupForecast = (forecasts: GroupedWeatherData[]) => {
+    const groupedForecasts: Record<string, WeatherForecast> = {};
 
-    forecasts.forEach((forecast: Forecasts) => {
+    forecasts.forEach((forecast: GroupedWeatherData) => {
       const key = `${forecast.fcstTime}`;
 
       // 초기화
