@@ -1,9 +1,11 @@
+import { useWindowResize } from './hooks/useWindowResize';
+
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import Base from './components/QrBottomSheet/Base';
-import { useWindowResize } from './hooks/useWindowResize';
 import LostItem from './pages/ViewAllLostItem';
 import DetailLostItem from './pages/ViewDetailLostItem';
+import Weather from './pages/Weather';
 import { theme } from './styles';
 import GlobalStyle from './styles/globalStyles';
 
@@ -20,6 +22,7 @@ function App() {
               <Route path="/" element={<Base />} />
               <Route path="/lostItem" element={<LostItem />} />
               <Route path="/lostItem/detail" element={<DetailLostItem />} />
+              <Route path="/weather" element={<Weather />} />
             </Routes>
           </BrowserRouter>
         </MobileWrapper>
